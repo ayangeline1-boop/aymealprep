@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="3-Day Air Fryer Meal Prep Coach - a polished static sample for high-protein, low-cleanup meal prep planning." />
+  <meta name="theme-color" content="#f7f4e8" />
+  <title>3-Day Air Fryer Meal Prep Coach</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f4e8;
+      --bg-soft: #fff9df;
+      --surface: rgba(255, 252, 236, 0.84);
+      --surface-strong: #fffaf0;
+      --border: rgba(201, 155, 56, 0.22);
+      --border-strong: rgba(0, 176, 190, 0.28);
+      --text: #15181a;
+      --muted: #5f6e70;
+      --accent: #00b0be;
+      --accent-strong: #007d87;
+      --accent-soft: rgba(0, 176, 190, 0.14);
+      --success: #008f9a;
+      --warning: #c99b38;
+      --shadow: 0 18px 60px rgba(0, 95, 103, 0.12);
+      --shadow-soft: 0 10px 30px rgba(201, 155, 56, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --content: 1180px;
+      --track-low: #eddca5;
+      --track-high: linear-gradient(90deg, #c99b38, #00b0be);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #111b1d;
+      --bg-soft: #142528;
+      --surface: rgba(18, 34, 37, 0.88);
+      --surface-strong: #172e31;
+      --border: rgba(143, 215, 215, 0.18);
+      --border-strong: rgba(237, 220, 165, 0.26);
+      --text: #f8f3e4;
+      --muted: #bfd5d4;
+      --accent: #8fd7d7;
+      --accent-strong: #b9eeee;
+      --accent-soft: rgba(143, 215, 215, 0.18);
+      --success: #00b0be;
+      --warning: #eddca5;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.24);
+      --track-low: #24464a;
+      --track-high: linear-gradient(90deg, #00b0be, #eddca5);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(135deg, rgba(237, 220, 165, 0.48), transparent 34%),
+        linear-gradient(225deg, rgba(143, 215, 215, 0.42), transparent 36%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+    h1, h2, h3, h4, h5, p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    .shell { width: min(var(--content), calc(100% - 24px)); margin: 0 auto; position: relative; z-index: 1; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 18px 0 10px; position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(180deg, rgba(247,244,232,.92), rgba(244,240,232,0));
+    }
+    [data-theme="dark"] .topbar { background: linear-gradient(180deg, rgba(17,27,29,.92), rgba(23,20,16,0)); }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 44px; height: 44px; border-radius: 14px; flex: none;
+      display: grid; place-items: center; color: #fff8f2; font-weight: 700; letter-spacing: .04em;
+      background: linear-gradient(135deg, #8fd7d7 0%, #00b0be 48%, #c99b38 100%);
+      box-shadow: var(--shadow-soft);
+    }
+    .brand-copy { min-width: 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; font-weight: 700; color: var(--muted);
+    }
+    .eyebrow::before {
+      content: ""; width: 9px; height: 9px; border-radius: 999px;
+      background: var(--success); box-shadow: 0 0 0 5px var(--accent-soft);
+    }
+    .brand h1 { font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.15; letter-spacing: -0.02em; margin-top: 4px; }
+    .brand p { color: var(--muted); font-size: .92rem; }
+    .toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .pill {
+      border: 1px solid var(--border); background: rgba(255,255,255,.55); color: var(--muted);
+      padding: 9px 13px; border-radius: 999px; font-size: .88rem; box-shadow: var(--shadow-soft);
+    }
+    [data-theme="dark"] .pill { background: rgba(255,255,255,.05); }
+    .theme-toggle {
+      border: 1px solid var(--border-strong); background: var(--surface-strong); color: var(--text);
+      padding: 10px 14px; border-radius: 999px; display: inline-flex; gap: 10px; align-items: center;
+      font: inherit; cursor: pointer; box-shadow: var(--shadow-soft);
+    }
+    .theme-toggle .icon {
+      width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center;
+      background: var(--accent-soft); color: var(--accent-strong); font-size: .9rem;
+    }
+    .hero { padding: 24px 0 10px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); gap: 18px; align-items: stretch; }
+    .hero-card, .panel, .stat, .meal-card, .template-card, .grocery-card, .timeline-card, .tips-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow); backdrop-filter: blur(18px);
+    }
+    .hero-card { padding: clamp(22px, 3vw, 32px); display: grid; gap: 22px; overflow: hidden; position: relative; }
+    .hero-card::after {
+      content: ""; position: absolute; right: -80px; top: -90px; width: 250px; height: 250px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(143,215,215,.34), rgba(237,220,165,.28)); pointer-events: none;
+    }
+    .hero-main { display: grid; gap: 16px; max-width: 680px; }
+    .hero h2 { font-size: clamp(2rem, 4vw, 4.1rem); line-height: .98; letter-spacing: -.06em; }
+    .hero p { font-size: 1.02rem; color: var(--muted); max-width: 60ch; }
+    .feature-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px;
+      border: 1px solid var(--border); background: rgba(255,255,255,.42); color: var(--text); font-size: .88rem; box-shadow: var(--shadow-soft);
+    }
+    [data-theme="dark"] .chip { background: rgba(255,255,255,.04); }
+    .chip strong { font-size: .78rem; color: var(--accent-strong); letter-spacing: .02em; }
+    .hero-side { display: grid; gap: 14px; align-content: start; }
+    .summary-box {
+      background: rgba(255,255,255,.44); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 18px; display: grid; gap: 14px;
+    }
+    [data-theme="dark"] .summary-box { background: rgba(255,255,255,.03); }
+    .summary-box h3 { font-size: 1rem; letter-spacing: -.02em; }
+    .summary-list { display: grid; gap: 10px; }
+    .summary-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 15px;
+      background: rgba(237,220,165,.42); border: 1px solid rgba(201,155,56,.22);
+    }
+    .summary-item span { color: var(--muted); font-size: .88rem; }
+    .summary-item strong { font-size: .96rem; font-weight: 700; text-align: right; }
+    .status-card {
+      padding: 18px; border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(143,215,215,.28), rgba(237,220,165,.42));
+      border: 1px solid rgba(0,176,190,.24); display: grid; gap: 12px;
+    }
+    .status-card small { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-weight: 700; font-size: .72rem; }
+    .status-card strong { font-size: 1.15rem; line-height: 1.2; }
+    .status-card p { color: var(--muted); font-size: .92rem; }
+    .grid { display: grid; gap: 18px; padding: 18px 0 28px; }
+    .section { display: grid; gap: 14px; }
+    .section-header { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; }
+    .section-header h3 { font-size: clamp(1.2rem, 2vw, 1.55rem); letter-spacing: -.03em; }
+    .section-header p { color: var(--muted); font-size: .95rem; max-width: 56ch; }
+    .panel { padding: 20px; }
+    .preferences-grid, .stats-grid, .templates-grid { display: grid; gap: 14px; }
+    .preferences-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .field {
+      display: grid; gap: 7px; padding: 14px 15px; border-radius: 18px;
+      background: rgba(255,255,255,.42); border: 1px solid var(--border);
+    }
+    [data-theme="dark"] .field { background: rgba(255,255,255,.03); }
+    .field label { font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 700; }
+    .field .value { display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: .96rem; }
+    .select-like, .toggle-like {
+      border: 1px solid var(--border-strong); background: var(--surface-strong); border-radius: 999px;
+      padding: 6px 10px; font-size: .82rem; color: var(--text); white-space: nowrap;
+    }
+    .toggle-like { display: inline-flex; align-items: center; gap: 8px; }
+    .toggle-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 5px rgba(0,176,190,.16); }
+    .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .stat { padding: 18px; display: grid; gap: 12px; }
+    .stat small { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-weight: 700; font-size: .72rem; }
+    .stat strong { font-size: clamp(1.6rem, 3vw, 2rem); letter-spacing: -.05em; }
+    .stat p { color: var(--muted); font-size: .9rem; }
+    .progress-group { display: grid; gap: 10px; }
+    .progress-label { display: flex; justify-content: space-between; gap: 10px; font-size: .88rem; color: var(--muted); }
+    .track { width: 100%; height: 11px; border-radius: 999px; background: var(--track-low); overflow: hidden; border: 1px solid var(--border); }
+    .fill { height: 100%; border-radius: inherit; background: var(--track-high); }
+    .mini-chart { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; align-items: end; height: 180px; padding-top: 8px; }
+    .mini-bar { display: grid; gap: 10px; justify-items: center; align-self: end; }
+    .mini-bar .bar {
+      width: min(100%, 80px); border-radius: 16px 16px 8px 8px; background: linear-gradient(180deg, rgba(201,155,56,.95), rgba(237,220,165,.55));
+      min-height: 60px; box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .mini-bar:nth-child(2) .bar { min-height: 118px; background: linear-gradient(180deg, rgba(0,176,190,.95), rgba(143,215,215,.45)); }
+    .mini-bar:nth-child(3) .bar { min-height: 150px; background: linear-gradient(180deg, rgba(201,155,56,.95), rgba(237,220,165,.55)); }
+    .mini-bar span { color: var(--muted); font-size: .84rem; text-align: center; }
+    .meal-days { display: grid; gap: 14px; }
+    .day-card {
+      border-radius: var(--radius-xl); padding: 18px; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.28)); box-shadow: var(--shadow-soft);
+    }
+    [data-theme="dark"] .day-card { background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)); }
+    .day-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+    .day-head h4 { font-size: 1.1rem; letter-spacing: -.02em; }
+    .day-macros { display: flex; gap: 8px; flex-wrap: wrap; }
+    .macro { font-size: .84rem; color: var(--muted); border: 1px solid var(--border); background: var(--surface-strong); padding: 7px 10px; border-radius: 999px; }
+    .meal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .meal-card { padding: 16px; display: grid; gap: 12px; position: relative; overflow: hidden; }
+    .meal-card::before { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 5px; background: linear-gradient(90deg, rgba(201,155,56,.92), rgba(0,176,190,.88)); }
+    .meal-top { display: flex; justify-content: space-between; gap: 10px; align-items: start; }
+    .meal-top h5 { font-size: 1rem; line-height: 1.2; letter-spacing: -.02em; }
+    .meal-meta { display: grid; justify-items: end; gap: 4px; text-align: right; color: var(--muted); font-size: .84rem; flex: none; }
+    .meal-meta strong { color: var(--text); font-size: .95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 6px 10px; border-radius: 999px; font-size: .76rem; font-weight: 700; letter-spacing: .02em; border: 1px solid transparent; }
+    .tag.air { background: rgba(201,155,56,.18); color: var(--accent-strong); border-color: rgba(201,155,56,.18); }
+    .tag.office { background: rgba(0,176,190,.14); color: var(--success); }
+    .tag.low { background: rgba(237,220,165,.36); color: var(--warning); }
+    .tag.quick { background: rgba(143,215,215,.26); color: #007d87; }
+    .meal-card li, .grocery-list li, .timeline-list li, .tip-list li { color: var(--muted); font-size: .9rem; }
+    .meal-note { color: var(--text); font-size: .88rem; background: rgba(237,220,165,.32); border: 1px solid rgba(201,155,56,.22); padding: 12px; border-radius: 14px; }
+    .templates-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .template-card { padding: 16px; display: grid; gap: 12px; }
+    .template-card h5 { font-size: 1rem; line-height: 1.25; }
+    .template-card .meta { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: .86rem; }
+    .template-card .quantities { color: var(--text); font-size: .88rem; background: rgba(255,255,255,.24); padding: 10px 12px; border-radius: 14px; border: 1px solid var(--border); }
+    .grocery-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px; }
+    .grocery-card { padding: 18px; display: grid; gap: 14px; }
+    .category { display: grid; gap: 10px; }
+    .category h4 { font-size: .95rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .grocery-list li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--border); }
+    .grocery-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .grocery-list strong { font-weight: 600; }
+    .grocery-list span { color: var(--muted); text-align: right; }
+    .prep-timeline { display: grid; gap: 14px; }
+    .timeline-card { padding: 18px; display: grid; gap: 14px; }
+    .timeline-list { display: grid; gap: 12px; position: relative; padding-left: 20px; }
+    .timeline-list::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, rgba(201,155,56,.7), rgba(0,176,190,.55)); }
+    .timeline-list li {
+      position: relative; padding: 14px 16px; background: rgba(255,255,255,.3); border: 1px solid var(--border);
+      border-radius: 16px; display: flex; justify-content: space-between; gap: 12px;
+    }
+    [data-theme="dark"] .timeline-list li { background: rgba(255,255,255,.02); }
+    .timeline-list li::before { content: ""; position: absolute; left: -18px; top: 18px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+    .timeline-list strong { display: block; font-size: .95rem; color: var(--text); }
+    .timeline-list span { color: var(--muted); font-size: .86rem; text-align: right; white-space: nowrap; }
+    .tips-card { padding: 18px; display: grid; gap: 12px; }
+    .tips-card .tip-list { display: grid; gap: 10px; }
+    .tip-list li { padding: 12px 14px; border-radius: 14px; background: rgba(143,215,215,.22); border: 1px solid rgba(0,176,190,.16); }
+    .footer {
+      padding: 10px 0 28px; color: var(--muted); font-size: .88rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .footer a { color: var(--accent-strong); font-weight: 600; }
+    @media (max-width: 1024px) {
+      .hero-grid, .grocery-layout { grid-template-columns: 1fr; }
+      .templates-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      .topbar { position: static; padding-top: 14px; }
+      .hero-grid, .meal-grid, .templates-grid, .preferences-grid, .stats-grid { grid-template-columns: 1fr; }
+      .hero h2 { font-size: clamp(2rem, 11vw, 3rem); }
+      .toolbar { justify-content: flex-start; }
+      .meal-top, .timeline-list li, .summary-item { flex-direction: column; align-items: flex-start; }
+      .meal-meta, .timeline-list span { text-align: left; justify-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar" aria-label="Page controls">
+      <div class="brand">
+        <div class="brand-mark">3D</div>
+        <div class="brand-copy">
+          <div class="eyebrow">Static sample preview</div>
+          <h1>3-Day Air Fryer Meal Prep Coach</h1>
+          <p>Calm-premium meal planning for a busy healthcare schedule.</p>
+        </div>
+      </div>
+      <div class="toolbar">
+        <span class="pill">Single-file static HTML</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Toggle color theme">
+          <span class="icon" aria-hidden="true">☼</span>
+          <span>Light mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <article class="hero-card">
+            <div class="hero-main">
+              <div class="eyebrow">High-protein. Easy cleanup. Office-friendly.</div>
+              <h2 id="hero-title">Three days of practical meals that feel balanced, not boring.</h2>
+              <p>This static mock shows the full planning flow: preferences, nutrition totals, meal cards, a grocery list, and a fast prep timeline. Everything is written directly in the page so it can be edited by hand before publishing on a free static host.</p>
+            </div>
+            <div class="feature-chips" aria-label="Highlights">
+              <span class="chip"><strong>Fast prep</strong> Air fryer and stir-fry friendly</span>
+              <span class="chip"><strong>Low cleanup</strong> Few pans, repeat ingredients</span>
+              <span class="chip"><strong>Office-safe</strong> Microwaveable lunches</span>
+            </div>
+          </article>
+          <aside class="hero-side">
+            <div class="summary-box">
+              <h3>Sample focus</h3>
+              <div class="summary-list">
+                <div class="summary-item"><span>Calorie target</span><strong>2,050 kcal/day</strong></div>
+                <div class="summary-item"><span>Protein target</span><strong>160 g/day</strong></div>
+                <div class="summary-item"><span>Prep style</span><strong>Batch once, assemble fast</strong></div>
+              </div>
+            </div>
+            <div class="status-card">
+              <small>Publishing ready</small>
+              <strong>One HTML file, no build step, no external assets.</strong>
+              <p>This sample is designed to open cleanly in a browser and feel good on mobile before you publish it.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="section" aria-labelledby="preferences-title">
+          <div class="section-header"><div><h3 id="preferences-title">Preferences Panel</h3><p>Static mock controls shown as editable content for the future generator.</p></div></div>
+          <div class="panel">
+            <div class="preferences-grid">
+              <div class="field"><label>Calorie target</label><div class="value"><span>2,050 kcal</span><span class="select-like">Moderate cut</span></div></div>
+              <div class="field"><label>Protein target</label><div class="value"><span>160 g</span><span class="select-like">High-protein</span></div></div>
+              <div class="field"><label>Meal count</label><div class="value"><span>4 meals/day</span><span class="select-like">Breakfast + lunch + dinner + snack</span></div></div>
+              <div class="field"><label>Goal type</label><div class="value"><span>Lean energy</span><span class="select-like">Fat loss support</span></div></div>
+              <div class="field"><label>Protein preference</label><div class="value"><span>Chicken, eggs, Greek yogurt</span><span class="select-like">Mixed protein</span></div></div>
+              <div class="field"><label>Carb preference</label><div class="value"><span>Rice, potatoes, oats</span><span class="select-like">Balanced carbs</span></div></div>
+              <div class="field"><label>Veg preference</label><div class="value"><span>Broccoli, peppers, carrots</span><span class="select-like">Roasted / stir-fry</span></div></div>
+              <div class="field"><label>Prep-time preference</label><div class="value"><span>Under 45 minutes</span><span class="select-like">Fast prep</span></div></div>
+              <div class="field"><label>Office-friendly</label><div class="value"><span>Yes</span><span class="toggle-like"><span class="toggle-dot"></span>Microwaveable lunches</span></div></div>
+              <div class="field"><label>Sauce preference</label><div class="value"><span>Light, savory, not messy</span><span class="select-like">Low-sauce</span></div></div>
+              <div class="field"><label>Variety level</label><div class="value"><span>Medium</span><span class="select-like">Repeat some ingredients</span></div></div>
+              <div class="field"><label>Cleanup style</label><div class="value"><span>Minimal dishes</span><span class="select-like">Sheet pan + air fryer</span></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="dashboard-title">
+          <div class="section-header"><div><h3 id="dashboard-title">Tracking Dashboard</h3><p>Simple visual totals for calories, protein, and day-to-day balance.</p></div></div>
+          <div class="stats-grid">
+            <article class="stat"><small>Daily calories</small><strong>1,990</strong><p>About 97% of the sample target.</p><div class="progress-group" aria-hidden="true"><div class="progress-label"><span>Goal progress</span><span>97%</span></div><div class="track"><div class="fill" style="width:97%"></div></div></div></article>
+            <article class="stat"><small>Daily protein</small><strong>164 g</strong><p>Built around satisfying portions.</p><div class="progress-group" aria-hidden="true"><div class="progress-label"><span>Goal progress</span><span>103%</span></div><div class="track"><div class="fill" style="width:100%"></div></div></div></article>
+            <article class="stat"><small>Prep efficiency</small><strong>Fast</strong><p>Shared ingredients and short cleanup.</p><div class="mini-chart" aria-hidden="true"><div class="mini-bar"><div class="bar"></div><span>Day 1</span></div><div class="mini-bar"><div class="bar"></div><span>Day 2</span></div><div class="mini-bar"><div class="bar"></div><span>Day 3</span></div></div></article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="meal-plan-title">
+          <div class="section-header"><div><h3 id="meal-plan-title">3-Day Meal Generator Preview</h3><p>Breakfast, lunch, dinner, and snack cards arranged as a sample plan.</p></div></div>
+          <div class="meal-days">
+            <article class="day-card">
+              <div class="day-head"><h4>Day 1</h4><div class="day-macros"><span class="macro">1,985 kcal</span><span class="macro">161 g protein</span><span class="macro">42 min prep</span></div></div>
+              <div class="meal-grid">
+                <article class="meal-card"><div class="meal-top"><h5>Greek Yogurt Protein Oats</h5><div class="meal-meta"><strong>450 kcal</strong><span>33 g protein</span><span>6 min</span></div></div><div class="tags"><span class="tag quick">Quick</span><span class="tag low">Low mess</span></div><ul><li>Rolled oats, Greek yogurt, berries, chia, honey</li></ul><div class="meal-note">Easy breakfast that keeps prep light and leaves the oven free for the later meals.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Air Fryer Chicken Rice Bowl</h5><div class="meal-meta"><strong>560 kcal</strong><span>47 g protein</span><span>18 min</span></div></div><div class="tags"><span class="tag air">Air fryer</span><span class="tag office">Office-friendly</span></div><ul><li>Chicken breast, jasmine rice, broccoli, sesame soy glaze</li></ul><div class="meal-note">Designed to reheat well without getting soggy or saucy.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Garlic Herb Salmon Tray Bake</h5><div class="meal-meta"><strong>610 kcal</strong><span>43 g protein</span><span>20 min</span></div></div><div class="tags"><span class="tag air">Air fryer</span><span class="tag low">Low cleanup</span></div><ul><li>Salmon, baby potatoes, green beans, lemon, garlic</li></ul><div class="meal-note">Simple sheet-pan style meal with crisp edges and clean reheating.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Cottage Cheese Berry Cup</h5><div class="meal-meta"><strong>365 kcal</strong><span>25 g protein</span><span>3 min</span></div></div><div class="tags"><span class="tag quick">Snack</span><span class="tag office">Portable</span></div><ul><li>Cottage cheese, berries, granola, cinnamon</li></ul><div class="meal-note">A quick protein boost that keeps the day balanced without extra cooking.</div></article>
+              </div>
+            </article>
+            <article class="day-card">
+              <div class="day-head"><h4>Day 2</h4><div class="day-macros"><span class="macro">2,020 kcal</span><span class="macro">166 g protein</span><span class="macro">40 min prep</span></div></div>
+              <div class="meal-grid">
+                <article class="meal-card"><div class="meal-top"><h5>Egg White Veggie Wrap</h5><div class="meal-meta"><strong>410 kcal</strong><span>30 g protein</span><span>8 min</span></div></div><div class="tags"><span class="tag quick">Quick</span><span class="tag low">Low mess</span></div><ul><li>Egg whites, spinach, peppers, tortilla, salsa on the side</li></ul><div class="meal-note">Keeps breakfast compact and easy to prep before a work shift.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Chicken Veg Stir Fry</h5><div class="meal-meta"><strong>585 kcal</strong><span>46 g protein</span><span>15 min</span></div></div><div class="tags"><span class="tag quick">Stir fry</span><span class="tag office">Reheats well</span></div><ul><li>Chicken, frozen stir-fry veg, rice, ginger garlic sauce</li></ul><div class="meal-note">A reliable, fast meal that stays clean and office-friendly.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Air Fryer Turkey Meatballs</h5><div class="meal-meta"><strong>650 kcal</strong><span>52 g protein</span><span>19 min</span></div></div><div class="tags"><span class="tag air">Air fryer</span><span class="tag low">Low sauce</span></div><ul><li>Turkey meatballs, potatoes, asparagus, herb seasoning</li></ul><div class="meal-note">Keeps the meal substantial without needing a heavy sauce.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Apple Peanut Protein Cup</h5><div class="meal-meta"><strong>375 kcal</strong><span>24 g protein</span><span>2 min</span></div></div><div class="tags"><span class="tag quick">Snack</span><span class="tag office">Portable</span></div><ul><li>Apple, peanut butter, protein yogurt</li></ul><div class="meal-note">Simple snack that feels useful, not sugary or messy.</div></article>
+              </div>
+            </article>
+            <article class="day-card">
+              <div class="day-head"><h4>Day 3</h4><div class="day-macros"><span class="macro">1,965 kcal</span><span class="macro">165 g protein</span><span class="macro">41 min prep</span></div></div>
+              <div class="meal-grid">
+                <article class="meal-card"><div class="meal-top"><h5>Protein Overnight Oats</h5><div class="meal-meta"><strong>440 kcal</strong><span>31 g protein</span><span>5 min</span></div></div><div class="tags"><span class="tag quick">Quick</span><span class="tag low">Low cleanup</span></div><ul><li>Oats, protein milk, yogurt, berries, cinnamon</li></ul><div class="meal-note">A chilled breakfast option that balances the more savory meals.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Air Fryer Chicken Potato Box</h5><div class="meal-meta"><strong>590 kcal</strong><span>48 g protein</span><span>17 min</span></div></div><div class="tags"><span class="tag air">Air fryer</span><span class="tag office">Lunch box</span></div><ul><li>Chicken, potatoes, carrots, mustard herb dip</li></ul><div class="meal-note">Structured for easy packing and no soggy texture after reheating.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Sesame Beef Broccoli Stir Fry</h5><div class="meal-meta"><strong>625 kcal</strong><span>50 g protein</span><span>16 min</span></div></div><div class="tags"><span class="tag quick">Stir fry</span><span class="tag low">Low mess</span></div><ul><li>Lean beef, broccoli, rice, sesame sauce</li></ul><div class="meal-note">A satisfying dinner that keeps the sauce light and tidy.</div></article>
+                <article class="meal-card"><div class="meal-top"><h5>Skyr & Almond Crunch</h5><div class="meal-meta"><strong>310 kcal</strong><span>21 g protein</span><span>2 min</span></div></div><div class="tags"><span class="tag quick">Snack</span><span class="tag office">Portable</span></div><ul><li>Skyr, almonds, berries, cinnamon</li></ul><div class="meal-note">Keeps the final day light while still helping protein stay on target.</div></article>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="template-title">
+          <div class="section-header"><div><h3 id="template-title">Built-in Meal Templates</h3><p>Preview of the reusable recipe library with quantity notes and nutrition estimates.</p></div></div>
+          <div class="templates-grid">
+            <article class="template-card"><h5>Chicken Rice Bowl</h5><div class="meta"><span>520 kcal</span><span>44 g protein</span></div><div class="quantities">Chicken 6 oz, rice 1 cup, broccoli 1 cup, sesame glaze 1 tbsp</div><div class="tags"><span class="tag air">Air fryer</span><span class="tag office">Office-friendly</span></div></article>
+            <article class="template-card"><h5>Turkey Meatballs + Potatoes</h5><div class="meta"><span>610 kcal</span><span>50 g protein</span></div><div class="quantities">Turkey 6 oz, potatoes 250 g, asparagus 1 cup, herb mix 1 tsp</div><div class="tags"><span class="tag air">Air fryer</span><span class="tag low">Low mess</span></div></article>
+            <article class="template-card"><h5>Salmon Tray Bake</h5><div class="meta"><span>595 kcal</span><span>41 g protein</span></div><div class="quantities">Salmon 6 oz, potatoes 200 g, green beans 1 cup, lemon 1/2</div><div class="tags"><span class="tag air">Air fryer</span><span class="tag low">Low cleanup</span></div></article>
+            <article class="template-card"><h5>Chicken Veg Stir Fry</h5><div class="meta"><span>565 kcal</span><span>46 g protein</span></div><div class="quantities">Chicken 6 oz, frozen stir-fry veg 2 cups, rice 1 cup, sauce 1 tbsp</div><div class="tags"><span class="tag quick">Stir fry</span><span class="tag office">Microwaveable</span></div></article>
+            <article class="template-card"><h5>Egg White Veg Wrap</h5><div class="meta"><span>405 kcal</span><span>30 g protein</span></div><div class="quantities">Egg whites 1 cup, tortilla 1, spinach 1 cup, peppers 1/2 cup</div><div class="tags"><span class="tag quick">Quick</span><span class="tag low">Low mess</span></div></article>
+            <article class="template-card"><h5>Greek Yogurt Protein Oats</h5><div class="meta"><span>440 kcal</span><span>33 g protein</span></div><div class="quantities">Oats 1/2 cup, Greek yogurt 170 g, berries 1/2 cup, chia 1 tsp</div><div class="tags"><span class="tag quick">Quick</span><span class="tag office">Portable</span></div></article>
+            <article class="template-card"><h5>Chicken Potato Box</h5><div class="meta"><span>590 kcal</span><span>48 g protein</span></div><div class="quantities">Chicken 6 oz, potatoes 250 g, carrots 1 cup, mustard dip 1 tbsp</div><div class="tags"><span class="tag air">Air fryer</span><span class="tag office">Lunch box</span></div></article>
+            <article class="template-card"><h5>Lean Beef Broccoli Stir Fry</h5><div class="meta"><span>620 kcal</span><span>50 g protein</span></div><div class="quantities">Lean beef 6 oz, broccoli 2 cups, rice 1 cup, sesame sauce 1 tbsp</div><div class="tags"><span class="tag quick">Stir fry</span><span class="tag low">Low sauce</span></div></article>
+            <article class="template-card"><h5>Cottage Cheese Berry Cup</h5><div class="meta"><span>360 kcal</span><span>24 g protein</span></div><div class="quantities">Cottage cheese 1 cup, berries 1/2 cup, granola 1/4 cup, cinnamon</div><div class="tags"><span class="tag quick">Snack</span><span class="tag office">Portable</span></div></article>
+            <article class="template-card"><h5>Skyr Almond Crunch</h5><div class="meta"><span>315 kcal</span><span>21 g protein</span></div><div class="quantities">Skyr 170 g, almonds 20 g, berries 1/3 cup, cinnamon</div><div class="tags"><span class="tag quick">Snack</span><span class="tag low">Low mess</span></div></article>
+            <article class="template-card"><h5>Chicken Fajita Bowl</h5><div class="meta"><span>570 kcal</span><span>45 g protein</span></div><div class="quantities">Chicken 6 oz, peppers 1 cup, onions 1/2 cup, rice 1 cup, salsa 1 tbsp</div><div class="tags"><span class="tag air">Air fryer</span><span class="tag office">Office-friendly</span></div></article>
+            <article class="template-card"><h5>Egg Power Breakfast</h5><div class="meta"><span>430 kcal</span><span>32 g protein</span></div><div class="quantities">Eggs 2, egg whites 1/2 cup, toast 2 slices, fruit 1 cup</div><div class="tags"><span class="tag quick">Quick</span><span class="tag low">Low cleanup</span></div></article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="grocery-title">
+          <div class="section-header"><div><h3 id="grocery-title">Grocery List</h3><p>Grouped by category with merged quantities for the 3-day sample plan.</p></div></div>
+          <div class="grocery-layout">
+            <article class="grocery-card">
+              <div class="category">
+                <h4>Protein</h4>
+                <ul class="grocery-list">
+                  <li><strong>Chicken breast</strong><span>2.4 lb</span></li>
+                  <li><strong>Salmon fillets</strong><span>2 portions</span></li>
+                  <li><strong>Lean ground turkey</strong><span>1 lb</span></li>
+                  <li><strong>Lean beef strips</strong><span>1 lb</span></li>
+                  <li><strong>Egg whites</strong><span>1 carton</span></li>
+                  <li><strong>Greek yogurt / skyr</strong><span>5 cups total</span></li>
+                  <li><strong>Cottage cheese</strong><span>2 cups</span></li>
+                </ul>
+              </div>
+            </article>
+            <article class="grocery-card">
+              <div class="category">
+                <h4>Produce + Pantry</h4>
+                <ul class="grocery-list">
+                  <li><strong>Broccoli</strong><span>4 cups</span></li>
+                  <li><strong>Potatoes</strong><span>1.5 kg</span></li>
+                  <li><strong>Bell peppers</strong><span>4</span></li>
+                  <li><strong>Green beans / asparagus</strong><span>3 cups</span></li>
+                  <li><strong>Rice</strong><span>3 cups cooked</span></li>
+                  <li><strong>Oats</strong><span>2 cups</span></li>
+                  <li><strong>Berries, apples, almonds</strong><span>Mixed snack pack</span></li>
+                  <li><strong>Sesame, mustard, herb seasoning</strong><span>Small pantry set</span></li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="prep-title">
+          <div class="section-header"><div><h3 id="prep-title">Meal Prep Timeline</h3><p>A speed-first sequence that reduces dishes and keeps the kitchen moving.</p></div></div>
+          <div class="prep-timeline">
+            <article class="timeline-card">
+              <ul class="timeline-list">
+                <li><strong>1. Preheat and stage ingredients</strong><span>0-5 min</span></li>
+                <li><strong>2. Chop vegetables and portion carbs</strong><span>5-12 min</span></li>
+                <li><strong>3. Batch protein in the air fryer</strong><span>12-24 min</span></li>
+                <li><strong>4. Stir fry the quick lunch/dinner veg</strong><span>24-34 min</span></li>
+                <li><strong>5. Assemble containers and snacks</strong><span>34-41 min</span></li>
+                <li><strong>6. Cool, label, and store</strong><span>41-45 min</span></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="tips-title">
+          <div class="section-header"><div><h3 id="tips-title">Gym Nutrition Tips</h3><p>Concise, practical notes that match the tone of the app.</p></div></div>
+          <article class="tips-card">
+            <ul class="tip-list">
+              <li>Hit protein evenly across the day instead of saving it all for dinner.</li>
+              <li>Keep pre-workout meals simple: carbs plus a little protein works well for most people.</li>
+              <li>Use low-sauce meals when you need clean reheating and less mess at work.</li>
+              <li>Repeat a few ingredients across meals to make prep faster and grocery shopping easier.</li>
+              <li>If a meal needs extra energy, add carbs first before adding lots of heavy fats or sauces.</li>
+            </ul>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer" aria-label="Footer">
+      <span>Static sample built for quick review and easy manual editing before publishing.</span>
+      <span>Free-host friendly: works as a plain HTML file on GitHub Pages, Netlify, or similar hosts.</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const icon = toggle.querySelector('.icon');
+      const label = toggle.querySelector('span:last-child');
+      let dark = false;
+      function renderTheme() {
+        root.dataset.theme = dark ? 'dark' : 'light';
+        toggle.setAttribute('aria-pressed', String(dark));
+        icon.textContent = dark ? '☾' : '☼';
+        label.textContent = dark ? 'Dark mode' : 'Light mode';
+      }
+      toggle.addEventListener('click', function () { dark = !dark; renderTheme(); });
+      renderTheme();
+    })();
+  </script>
+</body>
+</html>
